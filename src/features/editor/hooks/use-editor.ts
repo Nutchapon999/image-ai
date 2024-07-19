@@ -11,6 +11,7 @@ import {
   EditorHookProps, 
   FILL_COLOR, 
   FONT_FAMILY, 
+  FONT_WEIGHT, 
   RECTANGLE_OPTIONS,
   STROKE_COLOR,
   STROKE_DASH_ARRAY,
@@ -241,6 +242,17 @@ const buildEditor = ({
       addToCanvas(object);
     },
     canvas,
+    getActiveFontWeight: () => {
+      const selectedObject = selectedObjects[0];
+
+      if (!selectedObject) return FONT_WEIGHT;
+
+      // @ts-ignore
+      // Faulty TS library, fontWeight exists.
+      const value = selectedObject.get("fontWeight") || FONT_WEIGHT;
+
+      return value as string;
+    },
     getActiveFontFamily: () => {
       const selectedObject = selectedObjects[0];
 
@@ -250,7 +262,6 @@ const buildEditor = ({
       // Faulty TS library, fontFamily exists.
       const value = selectedObject.get("fontFamily") || fontFamily;
 
-      // Currently, gradients & patterns are not supported
       return value as string;
     },
     getActiveFillColor: () => {

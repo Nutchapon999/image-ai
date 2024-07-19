@@ -26,6 +26,7 @@ export const Toolbar = ({
   const fillColor = editor?.getActiveFillColor();
   const strokeColor = editor?.getActiveStrokeColor();
   const fontFamily = editor?.getActiveFontFamily();
+  const fontWeight = editor?.getActiveFontWeight();
 
   const selectedObjectsType = editor?.selectedObjects[0]?.type;
 
@@ -124,6 +125,9 @@ export const Toolbar = ({
                 onClick={() => editor?.bringForward()}
                 size="icon"
                 variant="ghost"
+                className={cn(
+                  
+                )}
               >
                 <FaBold className="size-4"/>
               </Button>
