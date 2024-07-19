@@ -150,6 +150,7 @@ export type BuildEditorProps = {
 }
 
 export interface Editor {
+  delete: () => void;
   canvas: fabric.Canvas;
   selectedObjects: fabric.Object[];
   bringForward: () => void;
@@ -162,16 +163,27 @@ export interface Editor {
   addInverseTriangle: () => void;
   addDiamond: () => void;
   changeOpacity: (value: number) => void;
+  changeFontSize: (value: number) => void;
   changeFillColor: (value: string) => void;
+  changeFontStyle: (value: string) => void;
+  changeTextAlign: (value: string) => void;
   changeFontFamily: (value: string) => void;
+  changeFontWeight: (value: number) => void;
   changeStrokeColor: (value: string) => void;
   changeStrokeWidth: (value: number) => void;
+  changeFontUnderline: (value: boolean) => void;
+  changeFontLinethrough: (value: boolean) => void;
   changeStrokeDashArray: (value: number[]) => void;
   getActiveOpacity: () => number;
+  getActiveFontSize: () => number;
+  getActiveFontStyle: () => string;
   getActiveFillColor: () => string;
+  getActiveTextAlign: () => string;
   getActiveFontFamily: () => string;
   getActiveFontWeight: () => number;
   getActiveStrokeColor: () => string;
   getActiveStrokeWidth: () => number;
+  getActiveFontUnderline: () => boolean;
+  getActiveFontLinetrough: () => boolean;
   getActiveStrokeDashArray: () => number[];
 }
