@@ -2,6 +2,32 @@ import { fabric } from "fabric";
 import { ITextboxOptions } from "fabric/fabric-impl";
 import * as material from "material-colors";
 
+export const filters = [
+  "none",
+  "polaroid",
+  "sepia",
+  "kodachrome",
+  "contrast",
+  "brightness",
+  "greyscale",
+  "brownie",
+  "vintage",
+  "technicolor",
+  "pixelate",
+  "invert",
+  "blur",
+  "sharpen",
+  "emboss",
+  "removecolor",
+  "blacknwhite",
+  "vibrance",
+  "blendcolor",
+  "huerotate",
+  "resize",
+  "saturation",
+  "gamma",
+];
+
 export const fonts = [
   "Arial",
   "Arial Black",
@@ -135,6 +161,8 @@ export interface EditorHookProps {
 }
 
 export type BuildEditorProps = {
+  copy: () => void;
+  paste: () => void;
   canvas: fabric.Canvas;
   fillColor: string;
   strokeColor: string;
@@ -150,6 +178,11 @@ export type BuildEditorProps = {
 }
 
 export interface Editor {
+  enableDrawingMode: () => void;
+  disableDrawingMode: () => void;
+  onCopy: () => void;
+  onPaste: () => void;
+  addImage: (value: string) => void;
   delete: () => void;
   canvas: fabric.Canvas;
   selectedObjects: fabric.Object[];
@@ -171,6 +204,7 @@ export interface Editor {
   changeFontWeight: (value: number) => void;
   changeStrokeColor: (value: string) => void;
   changeStrokeWidth: (value: number) => void;
+  changeImageFilter: (value: string) => void;
   changeFontUnderline: (value: boolean) => void;
   changeFontLinethrough: (value: boolean) => void;
   changeStrokeDashArray: (value: number[]) => void;
