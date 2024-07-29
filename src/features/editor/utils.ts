@@ -1,3 +1,4 @@
+import { uuid } from "uuidv4";
 import { fabric } from "fabric";
 import { RGBColor } from "react-color";
 
@@ -116,4 +117,26 @@ export const createFilter = (value: string) => {
   }
 
   return effect;
+}
+
+export function downloadFile(file: string, type: string) {
+  const anchorElement = document.createElement("a");
+
+  anchorElement.href = file;
+  anchorElement.download = `${uuid()}.${type}`;
+  document.body.appendChild(anchorElement);
+  anchorElement.click();
+  anchorElement.remove();
+}
+
+export function transformText(objects: any) {
+  if (!objects) return;
+
+  objects.forEach((item: any) => {
+    if (item.objects) {
+      transformText(item.objects);
+    } else {
+      item.type === "text" && (item.type === "textbox");
+    }
+  });
 }

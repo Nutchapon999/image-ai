@@ -64,7 +64,7 @@ export const ImageSidebar = ({
       {
         isError && (
           <div className="flex items-center justify-center flex-1">
-            <AlertTriangle className="size-4 text-muted-foreground" />
+            <AlertTriangle className="size-4 text-muted-foreground" /> 
             <p className="text-muted-foreground text-xs">
               Failed to fetch images
             </p>

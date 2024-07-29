@@ -12,6 +12,7 @@ export const ColorPicker = ({
   value,
   onChange,
 }: ColorPickerProps) => {
+
   return (
     <div className="w-full space-y-4">
       <ChromePicker 

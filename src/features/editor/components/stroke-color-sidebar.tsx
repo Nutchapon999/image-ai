@@ -27,12 +27,13 @@ export const StrokeColorSidebar = ({
   }
 
   const onChange = (value: string) => {
+    console.log(value);
     editor?.changeStrokeColor(value);
   }
 
   return (
     <aside className={cn(
-      "bg-white relative border-r z-[40] w-[360px]",
+      "bg-white relative border-r z-[40] w-[360px] h-full flex flex-col",
       activeTool === "stroke-color" ? "visible" : "hidden",
     )}
     >

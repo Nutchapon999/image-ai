@@ -1,6 +1,6 @@
-import { z } from "zod";
 import { Hono } from "hono";
-import { zValidator } from "@hono/zod-validator";
+import { verifyAuth } from "@hono/auth-js";
+
 import { unsplash } from "@/lib/unsplash";
 
 const DEFAULT_COUNT = 50;
@@ -9,6 +9,7 @@ const DEFAULT_COLLECTION_IDS = ["634986"];
 const app = new Hono()
   .get(
     "/",
+    verifyAuth(),
     async (c) => {
       const images = await unsplash.photos.getRandom({
         collectionIds: DEFAULT_COLLECTION_IDS,

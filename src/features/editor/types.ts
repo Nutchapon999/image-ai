@@ -2,6 +2,17 @@ import { fabric } from "fabric";
 import { ITextboxOptions } from "fabric/fabric-impl";
 import * as material from "material-colors";
 
+export const JSON_KEYS = [
+  "name",
+  "gradientAngle",
+  "selectable",
+  "hasControls",
+  "linkData",
+  "editable",
+  "extensionType",
+  "extension",
+]
+
 export const filters = [
   "none",
   "polaroid",
@@ -161,6 +172,12 @@ export interface EditorHookProps {
 }
 
 export type BuildEditorProps = {
+  undo: () => void;
+  redo: () => void;
+  save: () => void;
+  canRedo: () => boolean;
+  canUndo: () => boolean;
+  autoZoom: () => void;
   copy: () => void;
   paste: () => void;
   canvas: fabric.Canvas;
@@ -178,6 +195,18 @@ export type BuildEditorProps = {
 }
 
 export interface Editor {
+  savePng: () => void;
+  saveJpg: () => void;
+  saveSvg: () => void;
+  saveJson: () => void;
+  loadJson: (json: string) => void;
+  onUndo: () => void;
+  onRedo: () => void;
+  canUndo: () => boolean;
+  canRedo: () => boolean;
+  autoZoom: () => void;
+  zoomIn: () => void;
+  zoomOut: () => void;
   enableDrawingMode: () => void;
   disableDrawingMode: () => void;
   onCopy: () => void;
@@ -195,11 +224,13 @@ export interface Editor {
   addTriangle: () => void;
   addInverseTriangle: () => void;
   addDiamond: () => void;
+  changeSize: (value: { width: number; height: number }) => void;
   changeOpacity: (value: number) => void;
   changeFontSize: (value: number) => void;
   changeFillColor: (value: string) => void;
   changeFontStyle: (value: string) => void;
   changeTextAlign: (value: string) => void;
+  changeBackground: (value: string) => void;
   changeFontFamily: (value: string) => void;
   changeFontWeight: (value: number) => void;
   changeStrokeColor: (value: string) => void;
@@ -208,6 +239,7 @@ export interface Editor {
   changeFontUnderline: (value: boolean) => void;
   changeFontLinethrough: (value: boolean) => void;
   changeStrokeDashArray: (value: number[]) => void;
+  getWorkspace: () => fabric.Object | undefined;
   getActiveOpacity: () => number;
   getActiveFontSize: () => number;
   getActiveFontStyle: () => string;
@@ -218,6 +250,6 @@ export interface Editor {
   getActiveStrokeColor: () => string;
   getActiveStrokeWidth: () => number;
   getActiveFontUnderline: () => boolean;
-  getActiveFontLinetrough: () => boolean;
+  getActiveFontLinethrough: () => boolean;
   getActiveStrokeDashArray: () => number[];
 }
