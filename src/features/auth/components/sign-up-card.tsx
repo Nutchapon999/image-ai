@@ -18,7 +18,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
 
-import { useSignUp } from "@/features/auth/hooks/use-sign-up";
+import { useSignUp } from "@/features/auth/api/use-sign-up";
 import { TriangleAlert } from "lucide-react";
 
 export const SignUpCard = () => {

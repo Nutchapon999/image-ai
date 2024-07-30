@@ -15,6 +15,13 @@
       "when": 1722241429577,
       "tag": "0001_great_red_skull",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1722317234667,
+      "tag": "0002_grey_juggernaut",
+      "breakpoints": true
     }
   ]
 }
