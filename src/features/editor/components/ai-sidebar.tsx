@@ -1,14 +1,16 @@
 import { cn } from "@/lib/utils";
+import { useState } from "react";
 
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { ScrollArea } from "@/components/ui/scroll-area";
 
 import { ActiveTool, Editor } from "@/features/editor/types";
+
+import { usePayWall } from "@/features/subscriptions/hooks/use-pay-wall";
+import { useGenerateImage } from "@/features/ai/api/use-generate-image";
 import { ToolSidebarHeader } from "@/features/editor/components/tool-sidebar-header";
 import { ToolSidebarClose } from "@/features/editor/components/tool-sidebar-close";
-import { useGenerateImage } from "@/features/ai/api/use-generate-image";
-import { useState } from "react";
 
 interface AiSidebarProps {
   editor: Editor | undefined
@@ -22,6 +24,7 @@ export const AiSidebar = ({
   onChangeActiveTool
 }: AiSidebarProps) => {
   const mutation = useGenerateImage();
+  const { shouldBlock, triggerPayWall } = usePayWall(); 
 
   const [value, setValue] = useState("");
 
@@ -30,7 +33,10 @@ export const AiSidebar = ({
   ) => {
     e.preventDefault();
 
-    // TODO: Block with paywall
+    if (shouldBlock) {
+      triggerPayWall();
+      return;
+    }
 
     mutation.mutate({ prompt: value }, {
       onSuccess: ({ data }) => {

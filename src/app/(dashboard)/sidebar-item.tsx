@@ -19,7 +19,7 @@ export const SidebarItem = ({
   onClick
 }: SidebarItemProps) => {
   return (
-    <Link href={href}>
+    <Link href={href} onClick={onClick}>
       <div className={cn(
           "flex items-center px-3 py-3 rounded-xl bg-transparent hover:bg-white transition",
           isActive && "bg-white"

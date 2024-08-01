@@ -8,6 +8,7 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 
 import { ActiveTool, Editor } from "@/features/editor/types";
 import { useRemoveBg } from "@/features/ai/api/use-remove-background";
+import { usePayWall } from "@/features/subscriptions/hooks/use-pay-wall";
 import { ToolSidebarHeader } from "@/features/editor/components/tool-sidebar-header";
 import { ToolSidebarClose } from "@/features/editor/components/tool-sidebar-close";
 
@@ -23,6 +24,8 @@ export const RemoveBgSidebar = ({
   onChangeActiveTool
 }: RemoveBgSidebarProps) => {
   const mutation = useRemoveBg();
+  const { shouldBlock, triggerPayWall } = usePayWall(); 
+  
   const selectedObject = editor?.selectedObjects[0];
 
   // @ts-ignore
@@ -33,7 +36,10 @@ export const RemoveBgSidebar = ({
   }
 
   const onClick = () => {
-    // TODO: Block with paywall
+    if (shouldBlock) {
+      triggerPayWall();
+      return;
+    }
 
     mutation.mutate({
       image: imageSrc
