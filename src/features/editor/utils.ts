@@ -83,6 +83,7 @@ export const createFilter = (value: string) => {
       effect = new fabric.Image.filters.BlackWhite();
       break;
     case "vibrance":
+      // @ts-ignore
       effect = new fabric.Image.filters.Vibrance({
         vibrance: 1,
       });
@@ -102,6 +103,7 @@ export const createFilter = (value: string) => {
       effect = new fabric.Image.filters.Resize();
       break;
     case "gamma":
+      // @ts-ignore
       effect = new fabric.Image.filters.Gamma({
         gamma: [1, 0.5, 2.1],
       });
