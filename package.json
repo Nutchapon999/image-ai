@@ -33,7 +33,7 @@
     "clsx": "^2.1.1",
     "date-fns": "^3.6.0",
     "dotenv": "^16.4.5",
-    "drizzle-orm": "^0.32.4",
+    "drizzle-orm": "^0.31.4",
     "drizzle-zod": "^0.5.1",
     "fabric": "5.3.0-browser",
     "hono": "^4.5.0",
